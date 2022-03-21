@@ -24,7 +24,7 @@ dbconnection()
 
 const db = {};
 db.connection = connection;
-//db.User = require(`../models/User.js`)(connection);
+db.User = require(`../models/User.js`)(connection);
 
  
 // Relations User-News

@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const usersRouter = require("./routes/user-routes");
+const authRouter = require("./routes/auth-routes");
 const db = require("./config/db")
 
 
@@ -14,6 +16,10 @@ app.use(express.json());
 app.use(cors());
 
 
+
+// Using routes
+app.use("/api/users", usersRouter);
+app.use("/api", authRouter);
 
 // Test path that shows if the server booted properly ("http://{host}:{port}/")
 app.get('/', (req, res) => res.send('Mop App v2'));
