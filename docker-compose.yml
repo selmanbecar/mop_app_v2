@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  mopappv2:
+    image: mopappv2
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/usr/src/app
+    links:
+      - postgres
+  postgres:
+    image: postgres:latest
+    environment:  
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=rootroot
+      - POSTGRES_DB=mop_app_v2
+    volumes:
+      - data:/data/db
+
+volumes:
+  data:
