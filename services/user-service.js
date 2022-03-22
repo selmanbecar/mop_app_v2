@@ -10,7 +10,6 @@ const getUsers = async () => {
 
 // Get single user
 const getUser = async (id) => {
-   
         return await User.findByPk(id);
         
     

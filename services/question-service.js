@@ -1,5 +1,4 @@
 const { Question } = require('../config/db');
-const bcrypt = require('bcrypt');
 
 // Get last 20 questions
 const getQuestions = async (offset) => {
@@ -21,11 +20,6 @@ const getQuestion = async (id) => {
         
 };
 
-const doesQuestionExist = async (email) => {
-
-  return await Question.findOne({where:{email}});
-
-};
 
 // Add new Question
 const addQuestion = async (question) => {
@@ -65,6 +59,5 @@ module.exports = {
     addQuestion,
     editQuestion,
     deleteQuestion,
-    doesQuestionExist,
     getQuestionsByUser
 };

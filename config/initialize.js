@@ -1,4 +1,4 @@
-const { connection, User, Question } = require('./db');
+const { connection, User, Question, Comment } = require('./db');
 const bcrypt = require('bcrypt');
 
 
@@ -38,6 +38,19 @@ const initialize = async () => {
       userId: 1,
       title: "some title",
       description:"some desc"
+
+
+    },
+  ];
+
+  await Question.bulkCreate(questions);
+
+  const comments = [
+    {
+      
+      userId: 1,
+      questionId: 1,
+      comment:"some comment"
 
 
     },
