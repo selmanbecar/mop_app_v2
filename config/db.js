@@ -25,11 +25,15 @@ dbconnection()
 const db = {};
 db.connection = connection;
 db.User = require(`../models/User.js`)(connection);
+db.Question = require("../models/Question.js")(connection)
 
  
-// Relations User-News
+// Relations 
+
+db.User.hasMany(db.Question);
+db.Question.belongsTo(db.User);
 
 
-module.exports = dbconnection;
+
 
 module.exports = db;

@@ -1,5 +1,4 @@
-require('dotenv').config();
-const { connection, User } = require('./db');
+const { connection, User, Question } = require('./db');
 const bcrypt = require('bcrypt');
 
 
@@ -33,6 +32,18 @@ const initialize = async () => {
 
   await User.bulkCreate(users);
 
+  const questions = [
+    {
+      
+      userId: 1,
+      title: "some title",
+      description:"some desc"
+
+
+    },
+  ];
+
+  await Question.bulkCreate(questions);
  
 
 };

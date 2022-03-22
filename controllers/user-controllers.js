@@ -48,7 +48,7 @@ const addUser = async (req, res) => {
       } catch (e) {
         res.status(500).send({ message: e.message }).end();
       }
-    }
+    } 
   };
 
 const editUser = async (req, res) => {
@@ -62,7 +62,7 @@ const editUser = async (req, res) => {
     }
     const user = await userService.getUser(id);
     if (!user) {
-      res.status(404).send({ message: "User doesn't exist!" }).end();
+     return res.status(404).send({ message: "User doesn't exist!" }).end();
     }
     if (validateOwner(user.id, token)) {
 
