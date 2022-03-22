@@ -26,12 +26,12 @@ const doesUserExist = async (email) => {
 // Add new user
 const addUser = async (user) => {
         const usr = await User.findOne({ where: { email: user.email } });
-        if (usr) throw Error('User exists!');
+        if (usr) throw Error('User already exists!');
     
         return bcrypt.hash(user.password, 10).then(async (hash) => {
           user.password = hash;
-          return User.create(user).catch((err3) => {
-            throw err3.message || 'Error creating new user!';
+          return User.create(user).catch((err) => {
+            throw err.message || 'Error creating new user!';
           });
         });  
 }; 

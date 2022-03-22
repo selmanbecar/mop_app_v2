@@ -1,24 +1,19 @@
 const Sequelize = require('sequelize');
 
-// User model
+// Question model
 
 module.exports = (sequelize) =>
   sequelize.define(
-    "user",
+    "question",
     {
-      email: {
+      title: {
         allowNull: false,
         type: Sequelize.STRING,
-        validate: {
-          isEmail: true,
-        },
       },
-      password: {
+      description: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT, 
       },
     },
-    {
-      timestamps: false,
-    }
+   
   );
