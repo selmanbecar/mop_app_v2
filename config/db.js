@@ -26,13 +26,19 @@ const db = {};
 db.connection = connection;
 db.User = require(`../models/User.js`)(connection);
 db.Question = require("../models/Question.js")(connection)
+db.Comment = require("../models/Comment.js")(connection)
 
- 
+
 // Relations 
 
 db.User.hasMany(db.Question);
 db.Question.belongsTo(db.User);
 
+db.User.hasMany(db.Comment);
+db.Comment.belongsTo(db.User);
+
+db.Question.hasMany(db.Comment);
+db.Comment.belongsTo(db.Question);
 
 
 
