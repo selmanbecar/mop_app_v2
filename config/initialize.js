@@ -56,7 +56,21 @@ const initialize = async () => {
     },
   ];
 
-  await Question.bulkCreate(questions);
+  await Comment.bulkCreate(comments);
+
+  const likes = [
+    {
+      
+      userId: 1,
+      questionId: 1,
+      isQuestion:true,
+      isLike:true
+
+
+    },
+  ];
+
+  await Comment.bulkCreate(comments);
  
 
 };
