@@ -11,10 +11,10 @@ const validateOwner = (userId, token) => {
 const getQuestions = async (req, res) => {
    
     try {
-        const offset = req.query.offset
+        const limit = req.query.limit
 
-        const questions = await questionService.getQuestions(offset);
-        res.status(200).json(questions.reverse());
+        const questions = await questionService.getQuestions(limit);
+        res.status(200).json(questions);
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
@@ -25,10 +25,10 @@ const getQuestions = async (req, res) => {
    
     try {
         const token = req.header('x-auth-token');
-        const offset = req.query.offset
+        const limit = req.query.limit
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const userId = decoded.user.id
-        const questions = await questionService.getQuestionsByUser(offset, userId);
+        const questions = await questionService.getQuestionsByUser(limit, userId);
         res.status(200).json(questions);
     } catch (error) {
         res.status(404).json({ message: error.message });

@@ -22,7 +22,8 @@ const initialize = async () => {
 
   const users = [
     {
-      
+      first_name:"test",
+      last_name:"test",
       email: email,
       password: password,
 
@@ -56,7 +57,22 @@ const initialize = async () => {
     },
   ];
 
-  await Question.bulkCreate(questions);
+  await Comment.bulkCreate(comments);
+
+  const likes = [
+    {
+      
+      userId: 1,
+      questionId: 1,
+      isQuestion:true,
+      isLike:true,
+      commentId:null
+
+
+    },
+  ];
+
+  await Comment.bulkCreate(comments);
  
 
 };

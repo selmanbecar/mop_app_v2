@@ -41,9 +41,8 @@ const getTopUser = async (req, res) => {
    }
    
    sortable.sort(function(a, b) {
-       return a[1] - b[1];
+       return a.number - b.number;
    });
-   
  
       res.status(200).json(sortable.reverse());
   } catch (error) {

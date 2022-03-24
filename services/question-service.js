@@ -1,15 +1,18 @@
 const { Question } = require('../config/db');
 
 // Get last 20 questions
-const getQuestions = async (offset) => {
+const getQuestions = async (limit) => {
     
-        return await Question.findAll({ offset, limit: 20 });
+        return await Question.findAll({ offset:0, limit: limit,
+           order: [
+          ['createdAt', 'DESC'],
+      ],});
 };
 
 // Get last 20 questions by user
-const getQuestionsByUser = async (offset,userId) => {
+const getQuestionsByUser = async (limit,userId) => {
     
-    return await Question.findAll({where:{userId}, offset, limit: 20 });
+    return await Question.findAll({where:{userId}, offset:0, limit });
 };
 
 
@@ -21,7 +24,7 @@ const getQuestion = async (id) => {
 };
 
 
-// Add new Question
+// Add new Question  
 const addQuestion = async (question) => {
     return Question.create(question).catch((err) => {
         throw err.message || 'Error creating new question!';

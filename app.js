@@ -4,6 +4,8 @@ const usersRouter = require("./routes/user-routes");
 const questionsRouter = require("./routes/question-routes");
 const authRouter = require("./routes/auth-routes");
 const commentsRouter = require("./routes/comment-routes");
+const likesRouter = require("./routes/like-routes");
+
 const db = require("./config/db")
 
 
@@ -22,6 +24,7 @@ app.use(cors());
 app.use("/api/users", usersRouter);
 app.use("/api/questions", questionsRouter);
 app.use("/api/comments", commentsRouter);
+app.use("/api/likes", likesRouter);
 app.use("/api", authRouter);
 
 // Test path that shows if the server booted properly ("http://{host}:{port}/")
