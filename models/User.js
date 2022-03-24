@@ -6,6 +6,16 @@ module.exports = (sequelize) =>
   sequelize.define(
     "user",
     {
+      first_name: {
+      allowNull: true,
+      type: Sequelize.STRING,
+     
+    },
+    last_name: {
+      allowNull: true,
+      type: Sequelize.STRING,
+     
+    },
       email: {
         allowNull: false,
         type: Sequelize.STRING,

@@ -22,7 +22,8 @@ const initialize = async () => {
 
   const users = [
     {
-      
+      first_name:"test",
+      last_name:"test",
       email: email,
       password: password,
 
@@ -64,7 +65,8 @@ const initialize = async () => {
       userId: 1,
       questionId: 1,
       isQuestion:true,
-      isLike:true
+      isLike:true,
+      commentId:null
 
 
     },

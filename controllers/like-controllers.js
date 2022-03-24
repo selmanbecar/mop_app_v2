@@ -27,6 +27,30 @@ const getNumberOfLikeForQuestion = async (req, res) => {
     }
 };
 
+  //Get number of dislike for question
+  const getNumberOfDislikeForQuestion = async (req, res) => {
+   
+    try {
+        const questionId = req.params.id
+        const like = await likeService.getNumberOfDislikeForQuestion(questionId);
+        res.status(200).json({"like":like});
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+};
+
+    //Get number of dislike for comment
+  const getNumberOfDislikeForComment = async (req, res) => {
+   
+    try {
+        const commentId = req.params.id
+        const like = await likeService.getNumberOfDislikeForComment(commentId);
+        res.status(200).json({"like":like});
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+};
+
 const getTopQuestion = async (req, res) => {
   try {
       const like = await likeService.getTopQuestion();
@@ -70,7 +94,10 @@ const getTopQuestion = async (req, res) => {
 
 const addLike = async (req, res) => {
     const like = req.body;
-  
+    const isLike = await likeService.isLiked(req.body)
+    if(isLike){
+      return res.status(400).json({ errors:"You are already like!"})
+    }
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
      return res.status(400).json({ errors: errors.array() });
@@ -79,7 +106,7 @@ const addLike = async (req, res) => {
         const newLike = await likeService.addLike(like);
         res.status(201).send(newLike);
       } catch (e) {
-        res.status(500).send({ message: e.message }).end();
+        res.status(500).send({ message: e.message }).end(); 
       }
     } 
   };
@@ -89,6 +116,8 @@ module.exports = {
     getNumberOfLikeForQuestion,
     getNumberOfLikeForComment,
     getTopQuestion,
-    addLike
+    addLike,
+    getNumberOfDislikeForComment,
+    getNumberOfDislikeForQuestion
     
 };
