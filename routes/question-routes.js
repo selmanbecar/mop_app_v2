@@ -4,7 +4,7 @@ const auth = require('../middleware/auth');
 const router = express.Router();
 const questionController = require('../controllers/question-controllers');
 
-// user routes /api/users
+// question routes /api/questions
 
 router.get('/', questionController.getQuestions);
 router.get('/user',auth, questionController.getQuestionsByUser);

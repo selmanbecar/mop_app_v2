@@ -4,7 +4,7 @@ const auth = require('../middleware/auth');
 const router = express.Router();
 const commentController = require('../controllers/comment-controllers');
 
-// user routes /api/users
+// comment routes /api/comments
 
 router.get('/question/:id', commentController.getComments);
 router.get('/users', commentController.getTopUser);

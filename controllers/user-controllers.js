@@ -8,6 +8,7 @@ const validateOwner = (userId, token) => {
     return decoded.user.id.toString() === userId.toString()
   };
 
+  // get all users
 const getUsers = async (req, res) => {
     try {
         
@@ -17,7 +18,7 @@ const getUsers = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 };
-
+//get single user
 const getUser = async (req, res) => {
     try {
         const user = await userService.getUser(req.params.id);
@@ -29,7 +30,7 @@ const getUser = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 };
-
+// add user
 const addUser = async (req, res) => {
     const user = req.body;
   
@@ -50,7 +51,7 @@ const addUser = async (req, res) => {
       }
     } 
   };
-
+//edit user
 const editUser = async (req, res) => {
     const { id } = req.params;
   const newUser = req.body;
@@ -64,6 +65,7 @@ const editUser = async (req, res) => {
     if (!user) {
      return res.status(404).send({ message: "User doesn't exist!" }).end();
     }
+    // check is user owner of user
     if (validateOwner(user.id, token)) {
 
       await userService.editUser(id, newUser);
@@ -80,7 +82,7 @@ const editUser = async (req, res) => {
     res.status(500).send({ message: e.message }).end();
   }
 };
-
+// delete user
 const deleteUser = async (req, res) => {
     try {
       const user = await userService.deleteUser(req.params.id);

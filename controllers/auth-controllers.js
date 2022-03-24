@@ -51,9 +51,7 @@ const validate = async (req, res) => {
             res.status(401).json({ error: "Unauthorized access!" }).end();
             return;
         }
-
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
         res.status(200).send(decoded.user);
     } catch (error) {
         res.status(401).send({ error: "Invalid token!" });

@@ -4,7 +4,6 @@ require('dotenv').config();
 
 // Connection with database. For connection, you will need .env file.
 const connection = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
-  // gimme postgres, please!
   dialect: 'postgres',
   host: 'postgres',
   logging:false,
@@ -19,9 +18,7 @@ const dbconnection = async() => {
 }
 dbconnection()
 
-
 // Connection database with models
-
 const db = {};
 db.connection = connection;
 db.User = require(`../models/User.js`)(connection);
@@ -29,10 +26,7 @@ db.Question = require("../models/Question.js")(connection)
 db.Comment = require("../models/Comment.js")(connection)
 db.Like = require("../models/Like.js")(connection)
 
-
-
 // Relations 
-
 db.User.hasMany(db.Question);
 db.Question.belongsTo(db.User);
 

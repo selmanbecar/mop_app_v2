@@ -20,11 +20,12 @@ const getComments = async (req, res) => {
     }
 };
 
+// Get top users
 const getTopUser = async (req, res) => {
   try {
       const comment = await commentService.getTopUser();
 
-    // sorting funcion 
+    // sorting funcion -
 
     const newarr = comment.map((item) => {
       return item.userId
@@ -50,6 +51,7 @@ const getTopUser = async (req, res) => {
   }
 };
 
+// Get all comment by question id
 const getComment = async (req, res) => {
     try {
         const comment = await commentService.getComment(req.params.id);
@@ -62,6 +64,7 @@ const getComment = async (req, res) => {
     }
 };
 
+// Add comment
 const addComment = async (req, res) => {
     const comment = req.body;
   
@@ -78,6 +81,7 @@ const addComment = async (req, res) => {
     } 
   };
 
+  // Edit comment
 const editComment = async (req, res) => {
     const { id } = req.params;
   const newComment = req.body;
@@ -89,6 +93,7 @@ const editComment = async (req, res) => {
     if (!comment) {
       res.status(404).send({ message: "Comment doesn't exist!" }).end();
     }
+    //check is user owner of comment
     if (validateOwner(comment.userId, token)) {
 
       await commentService.editComment(id, newComment);
@@ -106,6 +111,7 @@ const editComment = async (req, res) => {
   }
 };
 
+// delete comment
 const deleteComment = async (req, res) => {
     try {
       const comment = await commentService.deleteComment(req.params.id);
