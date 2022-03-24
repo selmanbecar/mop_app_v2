@@ -2,12 +2,6 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { User } = require('../config/db');
 
-class AuthService {
-    
-    
-        
-}
-
 const createToken = (user) => {
     const payload = {
         user: {
@@ -19,7 +13,6 @@ const createToken = (user) => {
         expiresIn: '1d',
     });
 }
-
 
 const loginUsers = async (email,password) => {
  

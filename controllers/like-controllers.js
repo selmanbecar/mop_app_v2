@@ -51,6 +51,7 @@ const getNumberOfLikeForQuestion = async (req, res) => {
     }
 };
 
+//top questions
 const getTopQuestion = async (req, res) => {
   try {
       const like = await likeService.getTopQuestion();
@@ -62,13 +63,10 @@ const getTopQuestion = async (req, res) => {
    })
    const count = {};
    newarr.forEach((item) => {
-     
    })
-  
   
    const c1 = newarr.forEach(element => {
      if(element !==  null || element !== undefined){
-
        count[element] = (count[element] || 0) + 1;
      }
    });
@@ -91,7 +89,7 @@ const getTopQuestion = async (req, res) => {
   }
 };
 
-
+// add new like
 const addLike = async (req, res) => {
     const like = req.body;
     const isLike = await likeService.isLiked(req.body)

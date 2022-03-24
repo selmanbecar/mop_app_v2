@@ -34,7 +34,7 @@ const getQuestions = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 };
-
+// get single question
 const getQuestion = async (req, res) => {
     try {
         const questions = await questionService.getQuestion(req.params.id);
@@ -46,7 +46,7 @@ const getQuestion = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 };
-
+// add new Question
 const addQuestion = async (req, res) => {
     const questions = req.body;
   
@@ -62,7 +62,7 @@ const addQuestion = async (req, res) => {
       }
     } 
   };
-
+// edit question
 const editQuestion = async (req, res) => {
     const { id } = req.params;
   const newQuestion = req.body;
@@ -74,6 +74,7 @@ const editQuestion = async (req, res) => {
     if (!questions) {
       res.status(404).send({ message: "Question doesn't exist!" }).end();
     }
+    // check is user owner of question
     if (validateOwner(questions.userId, token)) {
 
       await questionService.editQuestion(id, newQuestion);
@@ -90,7 +91,7 @@ const editQuestion = async (req, res) => {
     res.status(500).send({ message: e.message }).end();
   }
 };
-
+// delete question
 const deleteQuestion = async (req, res) => {
     try {
       const questions = await questionService.deleteQuestion(req.params.id);

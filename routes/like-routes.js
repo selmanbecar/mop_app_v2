@@ -6,7 +6,6 @@ const likeController = require('../controllers/like-controllers');
 
 // like routes /api/likes,
    
-
 router.get('/question', likeController.getTopQuestion);
 router.get('/question/:id', likeController.getNumberOfLikeForQuestion);
 router.get('/comment/:id', likeController.getNumberOfLikeForComment);

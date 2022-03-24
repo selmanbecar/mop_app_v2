@@ -15,10 +15,7 @@ const hashPassword = () => {
 }
 hashPassword()
 
-
-
 const initialize = async () => {
-
 
   const users = [
     {
@@ -26,8 +23,6 @@ const initialize = async () => {
       last_name:"test",
       email: email,
       password: password,
-
-
     },
   ];
 
@@ -35,12 +30,9 @@ const initialize = async () => {
 
   const questions = [
     {
-      
       userId: 1,
       title: "some title",
       description:"some desc"
-
-
     },
   ];
 
@@ -48,33 +40,26 @@ const initialize = async () => {
 
   const comments = [
     {
-      
       userId: 1,
       questionId: 1,
       comment:"some comment"
-
-
     },
   ];
 
   await Comment.bulkCreate(comments);
 
   const likes = [
-    {
-      
+    { 
       userId: 1,
       questionId: 1,
       isQuestion:true,
       isLike:true,
       commentId:null
-
-
     },
   ];
 
   await Comment.bulkCreate(comments);
  
-
 };
 
 connection.sync({ force: false }).then(() => {
