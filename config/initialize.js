@@ -1,4 +1,4 @@
-const { connection, User, Question, Comment } = require('./db');
+const { connection, User, Question, Comment, Notification, Like } = require('./db');
 const bcrypt = require('bcrypt');
 
 
@@ -58,7 +58,15 @@ const initialize = async () => {
     },
   ];
 
-  await Comment.bulkCreate(comments);
+  await Like.bulkCreate(likes);
+
+  const notifications = [
+    { 
+      userId: 1, 
+    },
+  ];
+
+  await Notification.bulkCreate(notifications);
  
 };
 
