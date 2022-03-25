@@ -1,5 +1,6 @@
 const commentService = require("../services/comment-service");
-const userService = require("../services/user-service");
+const questionService = require("../services/question-service");
+const notificationService = require("../services/notification-service");
 const { validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 
@@ -74,6 +75,8 @@ const addComment = async (req, res) => {
     } else {
       try {
         const newComment = await commentService.addComment(comment);
+        const question = await questionService.getQuestion(comment.questionId)
+        await notificationService.addNotification({userId: question.userId})
         res.status(201).send(newComment);
       } catch (e) {
         res.status(500).send({ message: e.message }).end();
@@ -86,7 +89,7 @@ const editComment = async (req, res) => {
     const { id } = req.params;
   const newComment = req.body;
   const token = req.header('x-auth-token');
-
+ 
   try {
     
     const comment = await commentService.getComment(id);

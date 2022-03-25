@@ -29,7 +29,6 @@ test('Should login a user', async () => {
        password: 'testuserpass',
      }) 
      .expect(200);
-     console.log(data._body)
      token = data._body.token
  });
 
@@ -60,5 +59,6 @@ test('Should edit a user', async () => {
 test('Should delete a user ', async () => {
   await request(app)
     .delete(`/api/users/${userId}`)
+    .set("x-auth-token",token)
     .expect(200);
 });

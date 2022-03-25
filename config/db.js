@@ -25,6 +25,7 @@ db.User = require(`../models/User.js`)(connection);
 db.Question = require("../models/Question.js")(connection)
 db.Comment = require("../models/Comment.js")(connection)
 db.Like = require("../models/Like.js")(connection)
+db.Notification = require("../models/Notification.js")(connection)
 
 // Relations 
 db.User.hasMany(db.Question);
@@ -44,6 +45,9 @@ db.Like.belongsTo(db.Question);
 
 db.Comment.hasMany(db.Like);
 db.Like.belongsTo(db.Comment);
+
+db.User.hasMany(db.Notification);
+db.Notification.belongsTo(db.User);
 
 
 module.exports = db;
