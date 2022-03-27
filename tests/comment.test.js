@@ -3,7 +3,7 @@ const { set } = require('../app');
 const app = require('../app');
 const db = require('../config/db')
 
-let questionId 
+let commentId
 let token
 
 
@@ -20,36 +20,37 @@ test('Should login a user', async () => {
      token = data._body.token
  });
 
- // Add new question test
-test('Should create a new question', async () => {
+ // Add new comment test
+test('Should create a new comment', async () => {
     const data =  await request(app)
-       .post('/api/questions')
+       .post('/api/comments')
        .set("x-auth-token",token)
        .send({
          userId: 1,
-         title: 'test-title',
-         description:"test-description"
+         questionId: 1,
+         comment:"test-comment"
        }) 
        .expect(201);
-       questionId = data._body.id
+       commentId = data._body.id
+       
    });
    
 
-//Get all question test
-test('Should get all question', async () => {
-  await request(app).get('/api/questions').send().expect(200);
+//Get all comment test
+test('Should get all comments', async () => {
+  await request(app).get('/api/comments/question/1').send().expect(200);
 });
 
-// Get single question test
-test('Should get single user', async () => {
-  await request(app).get(`/api/questions/${questionId}`).expect(200);
+// Get single comment test
+test('Should get single comment', async () => {
+  await request(app).get(`/api/comments/${commentId}`).expect(200);
 });
 
 
 // Delete question test
-test('Should delete a question ', async () => {
+test('Should delete a comment ', async () => {
   await request(app)
-    .delete(`/api/questions/${questionId}`)
+    .delete(`/api/comments/${commentId}`)
     .set("x-auth-token",token)
     .expect(200);
 });
